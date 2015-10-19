@@ -3,7 +3,7 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 
 
-var db = require('monk')('localhost/userDB') || ('monk')(process.env.MONGO_URI)
+var db = require('monk')(process.env.MONGO_URI || 'localhost/userDB')
 var Users = db.get('user')
 
 /* GET home page. */
