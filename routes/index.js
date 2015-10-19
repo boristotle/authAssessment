@@ -40,7 +40,7 @@ router.post('/', function(req, res, next){
             var hash = bcrypt.hashSync(req.body.password, 10);
             Users.insert({email: req.body.email, password: hash}, function(err, user){
               req.session.user = user;
-            res.render('success', {users: user})
+            res.render('success', {user: req.session.user, errors: []})
             })
           }
       })
@@ -56,13 +56,13 @@ router.get('/signin', function(req, res, next){
 })
 
 router.get('/students', function(req, res, next){
-  Students.find({}, function(err, student){
+  Users.find({}, function(err, student){
     res.render('students', {students: student})
   })
 })
 
 router.get('/students/:id', function(req, res, next){
-  Students.findOne({_id: req.params.id}, function(err, student){
+  Users.findOne({_id: req.params.id}, function(err, student){
     res.render('showStudent', {theStudent: student})
   })
 })
