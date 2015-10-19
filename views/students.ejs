@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+<% students.forEach(function(student) { %>
+<p><a href='/students/<%= student._id %>'><%= student.name %></a> (<%= student.phone %>)</p>
+
+ <% }) %>
+
+
+   </body>
+</html>

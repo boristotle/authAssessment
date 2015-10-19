@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Signin</h1>
+    <form action='/signin' method='post'>
+      <label for='email'>Email</label>
+      <p><input type='text' id='email' name='email'></p>
+      <label for='password'>Password</label>
+      <p><input type='text' id='password' name='password'></p>
+      <p><input type='submit' value='Submit'></p>
+    </form>
+    <p><%= error %></p>
+
+  </body>
+</html>
