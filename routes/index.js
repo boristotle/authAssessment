@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
-var db = require('monk')('localhost/userDB')
+
+
+var db = require('monk')('localhost/userDB') || ('monk')(process.env.MONGO_URI)
 var Users = db.get('user')
 
 /* GET home page. */
@@ -89,8 +91,8 @@ router.post('/signin', function(req, res, next){
 
 
 
-var db2 = require('monk')('localhost/studentsDB')
-var Students = db2.get('students')
+// var db2 = require('monk')('localhost/studentsDB')
+// var Students = db2.get('students')
 
 router.post('/addStudent', function(req, res, next){
   var errors = [];
@@ -104,7 +106,7 @@ router.post('/addStudent', function(req, res, next){
     res.render('success', {errors: errors, user: req.session.user})
   }
   else {
-    Students.insert({name: req.body.name,
+    Users.insert({name: req.body.name,
       phone: req.body.phone}, function(err, student){
         console.log(student);
         res.render('success', {errors: ['You have succesfully added a student'], user: req.session.user})
